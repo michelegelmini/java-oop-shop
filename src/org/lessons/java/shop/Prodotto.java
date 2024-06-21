@@ -9,6 +9,8 @@ public class Prodotto {
 	private double price;
 	private int vat;
 	
+	
+	//costruttore
 	public Prodotto(String name, String description, double price, int vat) {
 		this.code = generateCode();
 		this.name = name;
@@ -17,7 +19,8 @@ public class Prodotto {
 		this.vat = vat;
 		
 	}
-
+	
+	//getter e setter
 	public String getName() {
 		return name;
 	}
@@ -61,4 +64,23 @@ public class Prodotto {
 			int result = r.nextInt(max);
 			return (String.format("%08d", result));
 		}
+		
+	//metodo per avere il prezzo base
+	public void getBasePrice() {
+		System.out.println("Il prezzo base del prodotto è €" + (String.format("%,.2f", this.price)));
+	}
+		
+	//metodo per avere il prezzo comprensivo di IVA
+	public void getVatPrice() {
+		
+		double finalPrice = this.price += this.price * this.vat / 100;
+		
+		System.out.println("Il prezzo comprensivo di IVA del prodotto è €" + (String.format("%,.2f", finalPrice)));
+	}
+	
+	//metodo per avere il nome esteso, ottenuto concatenando codice-nome
+	
+	public void getFullName() {
+		System.out.println(this.code + " - " + this.name);
+	}
 }
