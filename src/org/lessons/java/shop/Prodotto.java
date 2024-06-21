@@ -11,12 +11,11 @@ public class Prodotto {
 	
 	
 	//costruttore
-	public Prodotto(String name, String description, double price, int vat) {
+	public Prodotto(String name, String description) {
 		this.code = generateCode();
 		this.name = name;
 		this.description = description;
-		this.price = price;
-		this.vat = vat;
+		
 		
 	}
 	
@@ -42,7 +41,11 @@ public class Prodotto {
 	}
 
 	public void setPrice(double price) {
+		if (price > 0) {
 		this.price = price;
+		} else {
+			System.out.println("Il prezzo non può essere negativo");
+		}
 	}
 
 	public int getVat() {
@@ -50,7 +53,11 @@ public class Prodotto {
 	}
 
 	public void setVat(int vat) {
-		this.vat = vat;
+		if (vat >= 0) {
+			this.vat = vat;
+			} else {
+				System.out.println("l'IVA non può essere negativa");
+			}
 	}
 
 	public String getCode() {
@@ -67,15 +74,16 @@ public class Prodotto {
 		
 	//metodo per avere il prezzo base
 	public void getBasePrice() {
+		if (this.price > 0) 
 		System.out.println("Il prezzo base del prodotto è €" + (String.format("%,.2f", this.price)));
 	}
 		
 	//metodo per avere il prezzo comprensivo di IVA
 	public void getVatPrice() {
-		
+		if (this.price > 0  && this.vat > 0) {
 		double finalPrice = this.price += this.price * this.vat / 100;
-		
 		System.out.println("Il prezzo comprensivo di IVA del prodotto è €" + (String.format("%,.2f", finalPrice)));
+		}
 	}
 	
 	//metodo per avere il nome esteso, ottenuto concatenando codice-nome
